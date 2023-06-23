@@ -1,0 +1,14 @@
+Test that ansible server can connect to other servers:
+---> ansible all --key-file ~/.ssh/ansible -i ~/ansible_tut/inventory -m ping
+
+After adding the ansible.cfg you can use this command instead of above:
+---> ansible all -m ping
+
+List of hosts:
+---> ansible all --list-hosts
+
+Get all informations about hosts:
+---> ansible all -m gather_facts
+
+Get all informations about one of your hosts:
+---> ansible all -m gather_facts --limit <HOST_IP>

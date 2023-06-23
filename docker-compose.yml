@@ -2,22 +2,30 @@ version: '3.8'
 
 services:
   ansible_server:
-    image: ansible/ansible:ubuntu1404
+    build:
+      context: .
+      dockerfile: ansible_dockerfile
+    command: ["sleep","infinity"]
     container_name: ansible
     volumes:
-      # - /root/.ssh
+      - ansible_ssh_v:/root/.ssh
       - .:/root/ansible_tut
   
   server2:
     build: .
     container_name: server_2
     # command: ["sleep","infinity"]
-    # volumes:
-    #   - /home/vivek/.ssh
+    volumes:
+      - server2_ssh:/root/.ssh
   
   server3:
     build: .
     container_name: server_3
     # command: ["sleep","infinity"]
-    # volumes:
-    #   - /home/vivek/.ssh
+    volumes:
+      - server3_ssh:/root/.ssh
+
+volumes:
+  ansible_ssh_v:
+  server2_ssh:
+  server3_ssh:
